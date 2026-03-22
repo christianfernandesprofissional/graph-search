@@ -1,0 +1,22 @@
+# IntelliJ
+.idea/
+*.iml
+*.iws
+
+# Build
+/out/
+/build/
+/target/
+
+# Logs
+*.log
+
+# OS (Windows)
+Thumbs.db
+
+# OS (Mac)
+.DS_Store
+
+# Temporary files
+*.tmp
+*.swp
