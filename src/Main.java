@@ -16,6 +16,7 @@ public class Main {
         while(true) {
             init();
         }
+        //comentario teste
     }
 
     public static void init() {
