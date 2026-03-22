@@ -20,7 +20,7 @@ public class Main {
 
     public static void init() {
         Scanner sc = new Scanner(System.in);
-        String path = "C:\\Users\\chris\\Documents\\Workspace-IntelliJ\\busca-em-grafos\\busca-em-grafos\\Gallao.csv";
+        String path = "src/graph/graph.csv";
         Vertice[] graph = construirGrafo(path, 15);
         System.out.println("\nSelecione o número da cidade de origem, e um destino:\n");
 
