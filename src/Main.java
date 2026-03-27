@@ -1,4 +1,5 @@
 import busca_em_amplitude.BFS;
+import busca_em_profundidade.DFS;
 import model.Cidade;
 import model.Cor;
 import model.Vertice;
@@ -34,7 +35,9 @@ public class Main {
         System.out.print("Destino: ");
         int destino = sc.nextInt();
         sc.nextLine();
-        BFS buscar = new BFS(graph);
+
+        //BFS buscar = new BFS(graph);
+        DFS buscar = new DFS(graph);
         buscar.buildTree(graph[origem - 1].getCidade().getNome(), graph[destino - 1].getCidade().getNome());
         sc.nextLine();
     }

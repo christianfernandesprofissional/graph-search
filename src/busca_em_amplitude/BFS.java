@@ -1,6 +1,5 @@
 package busca_em_amplitude;
 
-import model.Arvore;
 import model.Cor;
 import model.NotFoundException;
 import model.Vertice;
@@ -9,60 +8,58 @@ import java.util.*;
 
 public class BFS {
     private final Vertice[] graph;
-    private final List<Vertice> tree;
-    private final Map<Vertice, Arvore> nos;
+    private final List<ArvoreBFS> caminho;
+    private final List<ArvoreBFS>  fila = new ArrayList<>();
 
     public BFS(Vertice[] graph) {
         this.graph = graph;
-        this.tree = new ArrayList();
-        this.nos = new HashMap();
+        this.caminho = new ArrayList<>();
     }
 
     public void buildTree(String cidadeOrigem, String cidadeDestino) {
-        List<Arvore> caminho = new ArrayList();
-        Vertice origem = this.findVertice(cidadeOrigem);
-        this.tree.add(origem);
-        Arvore raiz = new Arvore(origem);
-        this.nos.put(origem, raiz);
-        origem.getCidade().setCor(Cor.CINZA);
+        Vertice origem = findVertice(cidadeOrigem);
+        ArvoreBFS raiz = new ArvoreBFS(origem, 0);
+        raiz.setCor(Cor.CINZA);
+        fila.add(raiz);
+        int i = 0;
+        while(!isAllBlack()){
+            ArvoreBFS pai = fila.get(i);
+            if(!pai.getCor().equals(Cor.PRETO)){
+                List<Vertice> filhos = pai.getValor().getCidade().getVertices().entrySet().stream().sorted(Map.Entry.comparingByValue()).map(Map.Entry::getKey).toList();
+                for(Vertice v: filhos){
+                    ArvoreBFS filho = new ArvoreBFS(v, pai.getValor().getCidade().getVertices().get(v));
+                    if(!fila.contains(filho) ){
+                        filho.setCor(Cor.CINZA);
+                        filho.setPai(pai);
+                        pai.getFilhos().add(filho);
+                        fila.add(filho);
 
-        for(int i = 0; i < this.graph.length; ++i) {
-            new PriorityQueue();
-            Vertice proximo = (Vertice)this.tree.get(i);
-            if (!proximo.getCidade().getCor().equals(Cor.PRETO)) {
-                List<Vertice> filhos = proximo.getCidade().getVertices().entrySet().stream().sorted(Map.Entry.comparingByValue()).map(Map.Entry::getKey).toList();
-                filhos.forEach((c) -> c.getCidade().setCor(Cor.CINZA));
-                filhos.forEach((v) -> {
-                    if (!this.tree.contains(v)) {
-                        this.tree.add(v);
-                        int peso = (Integer)proximo.getCidade().getVertices().get(v);
-                        Arvore filho = new Arvore(v, peso);
-                        Arvore pai = (Arvore)this.nos.get(proximo);
-                        if (pai != null) {
-                            pai.addFilho(filho);
-                            filho.setPai(pai);
-                        }
-
-                        this.nos.put(v, filho);
-                        if (((Arvore)this.nos.get(v)).getValor().getCidade().getNome().equals(cidadeDestino)) {
-                            for(Arvore c = (Arvore)this.nos.get(v); c.hasFather(); c = c.getPai()) {
-                                caminho.add(c);
-                            }
-
-                            caminho.add((Arvore)this.nos.get(origem));
+                        if(filho.getValor().getCidade().getNome().equals(cidadeDestino)){
+                            caminho.add(filho);
                         }
                     }
-
-                });
-                proximo.getCidade().setCor(Cor.PRETO);
+                }
             }
+            i++;
+            pai.setCor(Cor.PRETO);
         }
 
-        raiz.print();
+        fila.getFirst().print();
+        printCaminho();
+
+    }
+
+    private void printCaminho() {
+        for(int j = 0; j<caminho.size(); j++){
+            if(caminho.get(j).getPai() != null){
+                ArvoreBFS p = caminho.get(j).getPai();
+                caminho.add(p);
+            }
+        }
         Collections.reverse(caminho);
         System.out.print("\n|");
         caminho.forEach((a) -> System.out.print(a.getValor().getCidade().getNome() + " |"));
-        int distancia = caminho.stream().mapToInt(Arvore::getPesoAresta).sum();
+        int distancia = caminho.stream().mapToInt(ArvoreBFS::getPesoAresta).sum();
         System.out.println("Distância total: " + distancia + "Km");
         System.out.println();
     }
@@ -75,6 +72,10 @@ public class BFS {
         }
 
         throw new NotFoundException("Cidade não encontrada!");
+    }
+
+    private boolean isAllBlack(){
+        return fila.stream().allMatch(a -> a.getCor().equals(Cor.PRETO));
     }
 }
 
