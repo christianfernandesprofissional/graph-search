@@ -1,13 +1,13 @@
 package busca_em_profundidade;
 
-import busca_em_amplitude.ArvoreBFS;
 import model.Cor;
 import model.NotFoundException;
+import model.SearchMethod;
 import model.Vertice;
 
 import java.util.*;
 
-public class DFS {
+public class DFS implements SearchMethod {
     private final Vertice[] graph;
     private final List<ArvoreDFS> caminho;
     private final List<ArvoreDFS>  fila = new ArrayList<>();
@@ -17,6 +17,7 @@ public class DFS {
         this.caminho = new ArrayList<>();
     }
 
+    @Override
     public void buildTree(String cidadeOrigem, String cidadeDestino) {
         Vertice origem = findVertice(cidadeOrigem);
         ArvoreDFS raiz = new ArvoreDFS(origem, 0);
@@ -26,11 +27,11 @@ public class DFS {
         ArvoreDFS pai = fila.getFirst();
         pai.setCor(Cor.CINZA);
         while(fila.getFirst().getOrdemDePassagem().size() < 2){
-            List<Vertice> filhos = pai.getValor().getCidade().getVertices().entrySet().stream().sorted(Map.Entry.comparingByValue()).map(Map.Entry::getKey).toList();
+            List<Vertice> filhos = pai.getValor().getCidade().getArestas().entrySet().stream().sorted(Map.Entry.comparingByValue()).map(Map.Entry::getKey).toList();
             ArvoreDFS filho = null;
             for(j = 0; j < filhos.size();j++){
                 if(filhos.get(j) != null){
-                    filho = new ArvoreDFS(filhos.get(j), pai.getValor().getCidade().getVertices().get(filhos.get(j)));
+                    filho = new ArvoreDFS(filhos.get(j), pai.getValor().getCidade().getArestas().get(filhos.get(j)));
                     if(!fila.contains(filho)){
                        break;
                     }
@@ -56,7 +57,6 @@ public class DFS {
                     pai.setCor(Cor.PRETO);
                 }
                 pai = pai.getPai();
-
             }
         }
         fila.getFirst().print();
@@ -71,7 +71,7 @@ public class DFS {
             }
         }
         Collections.reverse(caminho);
-        System.out.print("\n|");
+        System.out.print("\n Caminho -> |");
         caminho.forEach((a) -> System.out.print(a.getValor().getCidade().getNome() + " |"));
         int distancia = caminho.stream().mapToInt(ArvoreDFS::getPesoAresta).sum();
         System.out.println("Distância total: " + distancia + "Km");

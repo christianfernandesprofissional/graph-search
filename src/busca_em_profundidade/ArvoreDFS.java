@@ -10,14 +10,11 @@ import java.util.Objects;
 public class ArvoreDFS {
     private final Vertice valor;
     private ArvoreDFS pai;
-    private int pesoAresta;
+    private final int pesoAresta;
     private Cor cor;
     private final List<ArvoreDFS> filhos = new ArrayList<>();
     private final List<Integer> ordemDePassagem =  new ArrayList<>();
 
-    public ArvoreDFS(Vertice valor) {
-        this.valor = valor;
-    }
 
     public ArvoreDFS(Vertice valor, int pesoAresta) {
         this.valor = valor;

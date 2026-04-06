@@ -2,20 +2,21 @@ package busca_em_amplitude;
 
 import model.Cor;
 import model.NotFoundException;
+import model.SearchMethod;
 import model.Vertice;
 
 import java.util.*;
 
-public class BFS {
+public class BFS implements SearchMethod {
     private final Vertice[] graph;
-    private final List<ArvoreBFS> caminho;
+    private final List<ArvoreBFS> caminho = new ArrayList<>();;
     private final List<ArvoreBFS>  fila = new ArrayList<>();
 
     public BFS(Vertice[] graph) {
         this.graph = graph;
-        this.caminho = new ArrayList<>();
     }
 
+    @Override
     public void buildTree(String cidadeOrigem, String cidadeDestino) {
         Vertice origem = findVertice(cidadeOrigem);
         ArvoreBFS raiz = new ArvoreBFS(origem, 0);
@@ -25,9 +26,9 @@ public class BFS {
         while(!isAllBlack()){
             ArvoreBFS pai = fila.get(i);
             if(!pai.getCor().equals(Cor.PRETO)){
-                List<Vertice> filhos = pai.getValor().getCidade().getVertices().entrySet().stream().sorted(Map.Entry.comparingByValue()).map(Map.Entry::getKey).toList();
+                List<Vertice> filhos = pai.getValor().getCidade().getArestas().entrySet().stream().sorted(Map.Entry.comparingByValue()).map(Map.Entry::getKey).toList();
                 for(Vertice v: filhos){
-                    ArvoreBFS filho = new ArvoreBFS(v, pai.getValor().getCidade().getVertices().get(v));
+                    ArvoreBFS filho = new ArvoreBFS(v, pai.getValor().getCidade().getArestas().get(v));
                     if(!fila.contains(filho) ){
                         filho.setCor(Cor.CINZA);
                         filho.setPai(pai);
@@ -45,7 +46,11 @@ public class BFS {
         }
 
         fila.getFirst().print();
+
         printCaminho();
+        System.out.print("Q: {");
+        fila.forEach(a -> System.out.print(a.getValor().getCidade().getNome() + ", "));
+        System.out.print("}\n");
 
     }
 
@@ -57,7 +62,7 @@ public class BFS {
             }
         }
         Collections.reverse(caminho);
-        System.out.print("\n|");
+        System.out.print("\n Caminho -> |");
         caminho.forEach((a) -> System.out.print(a.getValor().getCidade().getNome() + " |"));
         int distancia = caminho.stream().mapToInt(ArvoreBFS::getPesoAresta).sum();
         System.out.println("Distância total: " + distancia + "Km");

@@ -2,7 +2,6 @@ package model;
 
 public class Vertice {
     private Cidade cidade;
-    private Integer aresta = 0;
 
     public Vertice(Cidade cidade) {
         this.cidade = cidade;
@@ -14,14 +13,6 @@ public class Vertice {
 
     public void setCidade(Cidade cidade) {
         this.cidade = cidade;
-    }
-
-    public Integer getAresta() {
-        return this.aresta;
-    }
-
-    public void setAresta(Integer aresta) {
-        this.aresta = aresta;
     }
 
     public String toString() {

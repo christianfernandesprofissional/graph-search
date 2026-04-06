@@ -8,15 +8,12 @@ import java.util.List;
 import java.util.Objects;
 
 public class ArvoreBFS {
-    private Vertice valor;
+    private final Vertice valor;
     private ArvoreBFS pai;
-    private int pesoAresta;
-    private final List<ArvoreBFS> filhos = new ArrayList();
+    private final int pesoAresta;
+    private final List<ArvoreBFS> filhos = new ArrayList<>();
     private Cor cor = Cor.BRANCO;
 
-    public ArvoreBFS(Vertice valor) {
-        this.valor = valor;
-    }
 
     public ArvoreBFS(Vertice valor, int pesoAresta) {
         this.valor = valor;

@@ -5,13 +5,11 @@ import java.util.Objects;
 
 public class Cidade {
     private String nome;
-    private HashMap<Vertice, Integer> vertices;
-    private Cor cor;
+    private HashMap<Vertice, Integer> arestas;
 
     public Cidade(String nome, HashMap<Vertice, Integer> vertices, Cor cor) {
         this.nome = nome;
-        this.vertices = vertices;
-        this.cor = cor;
+        this.arestas = vertices;
     }
 
     public String getNome() {
@@ -22,21 +20,14 @@ public class Cidade {
         this.nome = nome;
     }
 
-    public HashMap<Vertice, Integer> getVertices() {
-        return this.vertices;
+    public HashMap<Vertice, Integer> getArestas() {
+        return this.arestas;
     }
 
-    public void setVertices(HashMap<Vertice, Integer> vertices) {
-        this.vertices = vertices;
+    public void setArestas(HashMap<Vertice, Integer> arestas) {
+        this.arestas = arestas;
     }
 
-    public Cor getCor() {
-        return this.cor;
-    }
-
-    public void setCor(Cor cor) {
-        this.cor = cor;
-    }
 
     public boolean equals(Object o) {
         if (o != null && this.getClass() == o.getClass()) {

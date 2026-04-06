@@ -7,13 +7,25 @@
     <list default="true" id="a5b11ade-e1b8-4bda-bac1-a0ccd49e749e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/busca_em_amplitude/BFS.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Arvore.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/busca_em_amplitude/ArvoreBFS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/busca_em_amplitude/ArvoreBFS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/busca_em_amplitude/BFS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/busca_em_amplitude/BFS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/busca_em_profundidade/ArvoreDFS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/busca_em_profundidade/ArvoreDFS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/busca_em_profundidade/DFS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/busca_em_profundidade/DFS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Cidade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Cidade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Vertice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Vertice.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -36,7 +48,10 @@
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/chris/Documents/Workspace-IntelliJ/Nova pasta/graph-search/src",
-    "onboarding.tips.debug.path": "C:/Users/chris/Documents/Workspace-IntelliJ/Nova pasta/graph-search/src/Main.java"
+    "onboarding.tips.debug.path": "C:/Users/chris/Documents/Workspace-IntelliJ/Nova pasta/graph-search/src/Main.java",
+    "project.structure.last.edited": "SDKs",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
   }
 }]]></component>
   <component name="RecentsManager">
